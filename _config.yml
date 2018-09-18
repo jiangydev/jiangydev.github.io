@@ -13,7 +13,7 @@ baseurl: ""         # for example, '/blog' if your blog hosted on 'host/blog'
 # SNS settings
 RSS: false
 # weibo_username:     none
-zhihu_username:     jiangydev
+# zhihu_username:     jiangydev
 github_username:    jiangydev
 # twitter_username:  none
 # facebook_username: none

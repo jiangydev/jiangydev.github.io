@@ -4,7 +4,7 @@ title:      "区块链技术开发入门"
 subtitle:   "区块链技术开发相关笔记"
 date:       2018-08-24
 author:     "jiangydev"
-header-img: "img/post-bg-blockchain.jpg"
+header-/img: "/img/post-bg-blockchain.jpg"
 tags:
     - BlockChain
     - Ethereum
@@ -446,11 +446,11 @@ $ admin.nodeInfo
 
 - 创建账号
 
-![研发-多重签名钱包1](img/in-post/blockchain/研发-多重签名钱包1.png)
+![研发-多重签名钱包1](/img/in-post/blockchain/研发-多重签名钱包1.png)
 
 - 选择“钱包合约类型”
 
-![研发-多重签名钱包2](img/in-post/blockchain/研发-多重签名钱包2.png)
+![研发-多重签名钱包2](/img/in-post/blockchain/研发-多重签名钱包2.png)
 
 
 
@@ -458,9 +458,9 @@ $ admin.nodeInfo
 
 - 创建一个智能合约
 
-![研发-部署第一个合约1](img/in-post/blockchain/研发-部署第一个合约1.png)
+![研发-部署第一个合约1](/img/in-post/blockchain/研发-部署第一个合约1.png)
 
-- 将官网上的案例复制到合约中并部署![研发-部署第一个合约2](img/in-post/blockchain/研发-部署第一个合约2.png)
+- 将官网上的案例复制到合约中并部署![研发-部署第一个合约2](/img/in-post/blockchain/研发-部署第一个合约2.png)
 
   ```solidity
   pragma solidity ^0.4.24;
@@ -500,15 +500,15 @@ $ admin.nodeInfo
 
 - 部署合约
 
-![研发-部署第一个合约3](img/in-post/blockchain/研发-部署第一个合约3.png)
+![研发-部署第一个合约3](/img/in-post/blockchain/研发-部署第一个合约3.png)
 
 - 挖矿使合约确认
 
-![研发-部署第一个合约4](img/in-post/blockchain/研发-部署第一个合约4.png)
+![研发-部署第一个合约4](/img/in-post/blockchain/研发-部署第一个合约4.png)
 
 - 合约的测试
 
-![研发-部署第一个合约5](img/in-post/blockchain/研发-部署第一个合约5.png)
+![研发-部署第一个合约5](/img/in-post/blockchain/研发-部署第一个合约5.png)
 
 > 小提示：
 >
@@ -567,7 +567,7 @@ $ remixd -s C:\solidity\workspace\
 
 看到 localhost 说明配置成功。
 
-![研发-Solidity IDE Remix1](img/in-post/blockchain/研发-Solidity IDE Remix1.png)
+![研发-Solidity IDE Remix1](/img/in-post/blockchain/研发-Solidity IDE Remix1.png)
 
 
 
