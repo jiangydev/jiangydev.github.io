@@ -4,7 +4,7 @@ title:      "区块链基础理论入门"
 subtitle:   "区块链基础理论相关笔记"
 date:       2018-07-04
 author:     "jiangydev"
-header-/img: "/img/post-bg-blockchain.jpg"
+header-img: "img/post-bg-blockchain.jpg"
 tags:
     - BlockChain
     - Ethereum

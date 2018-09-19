@@ -4,7 +4,7 @@ title:      "Nginx 日志切割"
 subtitle:   "Nginx 日志配置相关"
 date:       2018-06-05
 author:     "jiangydev"
-header-/img: "/img/post-bg-cloud.jpg"
+header-img: "img/post-bg-cloud.jpg"
 tags:
     - Nginx
 ---

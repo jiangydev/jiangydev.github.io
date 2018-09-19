@@ -4,7 +4,7 @@ title:      "区块链技术开发入门"
 subtitle:   "区块链技术开发相关笔记"
 date:       2018-08-24
 author:     "jiangydev"
-header-/img: "/img/post-bg-blockchain.jpg"
+header-img: "img/post-bg-blockchain.jpg"
 tags:
     - BlockChain
     - Ethereum

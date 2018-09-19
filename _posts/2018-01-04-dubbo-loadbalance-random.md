@@ -4,7 +4,7 @@ title:      "Dubbo 负载均衡源码 - 随机"
 subtitle:   ""
 date:       2018-01-04
 author:     "jiangydev"
-header-/img: "/img/post-bg-cloud.jpg"
+header-img: "img/post-bg-cloud.jpg"
 tags:
     - Load Balance
     - Dubbo
