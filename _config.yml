@@ -59,9 +59,9 @@ duoshuo_share: false                     # set to false if you want to use Comme
 
 # Analytics settings
 # Baidu Analytics
-# ba_track_id: xxxxxxxxxxxxxxxxxxxxxxxxxx
+ba_track_id: bd0a4587c4c3d0f0e9451c950f00ed8c
 # Google Analytics
-# ga_track_id: 'UA-xxxxxx-xx'            # Format: UA-xxxxxx-xx
+ga_track_id: 'UA-126027390-1'            # Format: UA-xxxxxx-xx
 # ga_domain: jiangjiangy.xyz
 
 
