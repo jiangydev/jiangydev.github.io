@@ -104,7 +104,7 @@ tags:
 
 网页的引用关系（`向量矩阵，可运算出权重高的网页`）。
 
-![PageRank](./pic/PageRank.png)
+![PageRank](/img/in-post/bigdata/base/PageRank.png)
 
 程序分为三部分：Job(主程序), Map(任务拆分), Reduce(任务计算)。编写好程序（*.jar）后，还需要放在`Yarn平台`执行。
 
@@ -120,7 +120,7 @@ tags:
 > $ hadoop jar hadoop-mapreduce-examples-2.4.1.jar wordcount <需要统计词频的文本.txt> <输出目录>
 > ```
 
-![MapReduce计算模型](./pic/MapReduce计算模型.png)
+![MapReduce计算模型](/img/in-post/bigdata/base/MapReduce计算模型.png)
 
 > MR的默认排序规则：
 >
@@ -302,50 +302,7 @@ HBase是一个分布式的、面向列的开源数据库；BigTable是一个结�
   - 开发和测试
 - 配置
 
-<table>
-    <tr>
-        <td>参数文件(目录`<hadoop directory>/etc/hadoop`)</td>
-        <td>配置参数</td>
-        <td>参考值</td>
-    </tr>
-    <tr>
-        <td>hadoop-env.sh</td>
-        <td>JAVA_HOME</td>
-        <td>/root/training/jdk1.7.0_79</td>
-    </tr>
-    <tr>
-        <td rowspan="2">hdfs-site.xml</td>
-        <td>dfs.replication</td>
-        <td>1</td>
-    </tr>
-    <tr>
-        <td>dfs.permissions</td>
-        <td>false</td>
-    </tr>
-    <tr>
-        <td rowspan="2">core-site.xml</td>
-        <td>fs.defaultFS</td>
-        <td>hdfs://<hostname>:9000</td>
-    </tr>
-    <tr>
-        <td>hadoop.tmp.dir</td>
-        <td>/root/training/hadoop-2.7.5/tmp</td>
-    </tr>
-    <tr>
-        <td>mapred-site.xml</td>
-        <td>mapreduce.framework.name</td>
-        <td>yarn</td>
-    </tr>
-    <tr>
-        <td rowspan="2">yarn-site.xml</td>
-        <td>yarn.resourcemanager.hostname</td>
-        <td><hostname></td>
-    </tr>
-    <tr>
-        <td>yarn.nodemanager.aux-services</td>
-        <td>mapreduce_shuffle</td>
-    </tr>
-</table>
+  *注：该部分表格用 HTML 编写，在这里无法正常显示，已暂时删除。*
 
 - 例子
 
