@@ -34,31 +34,30 @@ DNS1=192.168.XX.XX
 
 4. 重启下网络服务
 
-```shell
-$ service network restart
-```
-
-
+   ```shell
+   $ service network restart
+   ```
 
 
 ## 更换YUM源
 
 1. 首先备份`/etc/yum.repos.d/CentOS-Base.repo`
 
-```shell
-$ mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-```
+   ```shell
+   $ mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+   ```
 
 2. 下载对应版本的repo文件
 
-```shell
-$ wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo http://mirrors.aliyun.com/repo/Centos-7.repo
-```
-
+   ```shell
+   $ wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+   ```
 
 3. 运行以下命令生成缓存
 
-```shell
-$ yum clean all
-$ yum makecache
-```
+   ```shell
+   $ yum clean all
+   $ yum makecache
+   ```
+
+   
