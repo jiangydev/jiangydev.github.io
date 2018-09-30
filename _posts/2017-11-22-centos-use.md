@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "CentOS7 Ïà¹ØÅäÖÃ¼°Ê¹ÓÃ"
+title:      "CentOS7 ç›¸å…³é…ç½®åŠä½¿ç”¨"
 subtitle:   ""
 date:       2017-11-22
 author:     "jiangydev"
@@ -10,21 +10,21 @@ tags:
     - Linux
 ---
 
-# CentOS Ïà¹ØÅäÖÃ¼°Ê¹ÓÃ
+# CentOS ç›¸å…³é…ç½®åŠä½¿ç”¨
 
-## ¾²Ì¬ÍøÂçÅäÖÃ
+## é™æ€ç½‘ç»œé…ç½®
 
-1. ÅäÖÃÎÄ¼ş£º/etc/sysconfig-scripts/ifcfg-xxx
+1. é…ç½®æ–‡ä»¶ï¼š`/etc/sysconfig-scripts/ifcfg-xxx`
 
-2. ĞŞ¸ÄÒÑÓĞÄÚÈİ
+2. ä¿®æ”¹å·²æœ‰å†…å®¹
 ```
-# ÉèÖÃ¾²Ì¬
+# è®¾ç½®é™æ€
 BOOTPROTO=static
-# ÏµÍ³Æô¶¯Ê±¼ÓÔØ¸ÃÅäÖÃ
+# ç³»ç»Ÿå¯åŠ¨æ—¶åŠ è½½è¯¥é…ç½®
 ONBOOT=yes
 ```
 
-3. Ìí¼Ó¾²Ì¬ÅäÖÃ
+3. æ·»åŠ é™æ€é…ç½®
 ```
 IPADDR=192.168.XX.XX
 NETMASK=255.255.255.0
@@ -32,21 +32,33 @@ GATEWAY=192.168.XX.XX
 DNS1=192.168.XX.XX
 ```
 
-4. ÖØÆôÏÂÍøÂç·şÎñ
-service network restart  
+4. é‡å¯ä¸‹ç½‘ç»œæœåŠ¡
+
+```shell
+$ service network restart
+```
 
 
-## ¸ü»»YUMÔ´
-
-1. Ê×ÏÈ±¸·İ/etc/yum.repos.d/CentOS-Base.repo
-
-mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-
-2. ÏÂÔØ¶ÔÓ¦°æ±¾µÄrepoÎÄ¼ş
-wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo
-http://mirrors.aliyun.com/repo/Centos-7.repo
 
 
-3. ÔËĞĞÒÔÏÂÃüÁîÉú³É»º´æ
-yum clean all
-yum makecache
+## æ›´æ¢YUMæº
+
+1. é¦–å…ˆå¤‡ä»½`/etc/yum.repos.d/CentOS-Base.repo`
+
+```shell
+$ mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+```
+
+2. ä¸‹è½½å¯¹åº”ç‰ˆæœ¬çš„repoæ–‡ä»¶
+
+```shell
+$ wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+```
+
+
+3. è¿è¡Œä»¥ä¸‹å‘½ä»¤ç”Ÿæˆç¼“å­˜
+
+```shell
+$ yum clean all
+$ yum makecache
+```
