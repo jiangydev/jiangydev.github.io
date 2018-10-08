@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Redis 相关问题"
-subtitle:   ""
+subtitle:   "Redis 缓存穿透、雪崩，持久化等"
 date:       2018-09-30
 author:     "jiangydev"
 header-img: "img/post-bg-cloud.jpg"

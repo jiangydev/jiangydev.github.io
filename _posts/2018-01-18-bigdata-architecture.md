@@ -1278,43 +1278,286 @@ Hadoop本身的权限和访问控制非常弱。
 
 ##### 5.12.2 RPC（Remote Procedure Call）
 
+![Hadoop中的RPC调用协议](/img/in-post/bigdata/base/Hadoop中的RPC调用协议.png)
 
+- Server 端实现
 
+  - MyBusiness 接口类
 
+    ```java
+    package rpc.server;
+    
+    import org.apache.hadoop.ipc.VersionedProtocol;
+    
+    /**
+     * @author jiangydev.
+     * @date 2018/9/17.
+     */
+    public interface MyBusiness extends VersionedProtocol {
+    
+        /**
+         * 定义自己的签名 ID，通过这个 ID 号，就能区分在客户端调用的时候，调用的是哪个具体的实现
+         * 变量名字必须为 versionID
+         * 使用该 versionID 构造签名
+         */
+        public static long versionID = 1L;
+    
+        String sayHello(String name);
+    }
+    ```
+
+  - MyBusinessImpl 实现类
+
+    ```java
+    package rpc.server;
+    
+    import org.apache.hadoop.ipc.ProtocolSignature;
+    
+    import java.io.IOException;
+    
+    /**
+     * @author jiangydev.
+     * @date 2018/9/17.
+     */
+    public class MyBusinessImpl implements MyBusiness {
+        @Override
+        public String sayHello(String name) {
+            return "hello " + name;
+        }
+    
+        @Override
+        public long getProtocolVersion(String s, long l) throws IOException {
+            // 返回ID
+            return MyBusiness.versionID;
+        }
+    
+        @Override
+        public ProtocolSignature getProtocolSignature(String s, long l, int i) throws IOException {
+            // 通过 versionID 构造签名
+            return new ProtocolSignature(MyBusiness.versionID, null);
+        }
+    }
+    ```
+
+  - Server 测试类
+
+    ```java
+    package rpc.server;
+    
+    import org.apache.hadoop.conf.Configuration;
+    import org.apache.hadoop.ipc.RPC;
+    
+    import java.io.IOException;
+    
+    /**
+     * @author jiangydev.
+     * @date 2018/9/17.
+     */
+    public class MyRPCServer {
+        public static void main(String[] args) throws IOException {
+            // Hadoop 的 RPC 框架发布我们的程序
+            RPC.Builder builder = new RPC.Builder(new Configuration());
+            builder.setBindAddress("127.0.0.1")
+                    .setPort(7788)
+                    .setProtocol(MyBusiness.class)      // 发布的接口
+                    .setInstance(new MyBusinessImpl()); // 接口的实现类
+    
+            // 创建一个 RPC Server
+            RPC.Server server = builder.build();
+            server.start();
+        }
+    }
+    ```
+
+- Client 端实现
+
+  - Client 端测试类
+
+    ```java
+    package rpc.client;
+    
+    import org.apache.hadoop.conf.Configuration;
+    import org.apache.hadoop.ipc.RPC;
+    import rpc.server.MyBusiness;
+    
+    import java.io.IOException;
+    import java.net.InetSocketAddress;
+    
+    /**
+     * @author jiangydev.
+     * @date 2018/9/17.
+     */
+    public class MyRPCClient {
+        public static void main(String[] args) throws IOException {
+            // 通过 RPC 协议获得服务器端一个句柄 --> 得到一个代理对象
+            // RPC.getProxy(Class<rpc.server.MyBusiness> protocol,  调用的接口
+            //              long clientVersion,                     签名的ID号
+            //              InetSocketAddress addr,                 RPC Server 的地址
+            //              Configuration conf);                    配置信息
+            MyBusiness proxy = RPC.getProxy(MyBusiness.class,
+                    MyBusiness.versionID,
+                    new InetSocketAddress("localhost", 7788),
+                    new Configuration());
+            // 调用服务器端功能
+            System.out.println(proxy.sayHello("jiangydev"));
+        }
+    }
+    ```
 
 ### 6 MapReduce
 
-MRUnit        ：MapReduce（离线计算框架）
+MRUnit：MapReduce（离线计算框架）
 
-  计算模型（Java 程序）
+计算模型（Java 程序）
 
-  1. 案例：WordCount     --> 分析数据的流动过程
+#### 6.1 WordCount 分析数据的流动过程
 
-  2. MR的高级功能
+![WordCount数据流动过程](/img/in-post/bigdata/base/WordCount数据流动过程.png)
 
-    * 排序
-    
-    * 分区 Partition
-    
-    * 序列化
-    
-    * 合并 Combiner
 
-  3. MR的核心
 
-    Shuffle 洗牌
+#### 6.2 第一个 MapReduce 程序: WordCount
 
-  4. 案例
+##### 6.2.1 WordCountMapper
 
-    * 使用MRUnit进行单元测试
-    
-    * 数据去重 select distinct
-    
-    * 多表查询
-    
-    * 自连接
-    
-    * 倒排索引 Reverted index
+```java
+package wordcount;
+
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
+
+import java.io.IOException;
+
+/**
+ * @author jiangydev.
+ */
+public class WordCountMapper extends Mapper<LongWritable, Text, Text, LongWritable> {
+
+    @Override
+    protected void map(LongWritable key1, Text value1, Context context) throws IOException, InterruptedException {
+        /**
+         * Context Map 阶段的上下文
+         * 上文：HDFS 输入
+         * 下文：Reducer
+         */
+        // 得到数据
+        String str = value1.toString();
+        // 按照空格进行分词
+        String[] words = str.split(" ");
+        // 将每个单词的频率输出到 reducer: k2, v2
+        for (String w : words) {
+            context.write(new Text(w), new LongWritable(1));
+        }
+    }
+}
+```
+
+##### 6.2.2 WordCountReducer
+
+```java
+package wordcount;
+
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+
+import java.io.IOException;
+
+/**
+ * @author jiangydev.
+ */
+public class WordCountReducer extends Reducer<Text, LongWritable, Text, LongWritable> {
+    @Override
+    protected void reduce(Text key3, Iterable<LongWritable> values3, Context context) throws IOException, InterruptedException {
+        /**
+         * 上文：Map
+         * 下文：HDFS
+         */
+        // 求和
+        long total = 0;
+        for (LongWritable value2 : values3) {
+            total = total + value2.get();
+        }
+        // 输出
+        context.write(key3, new LongWritable(total));
+    }
+}
+```
+
+##### 6.2.3 WordCountMain
+
+```java
+package wordcount;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+
+import java.io.IOException;
+
+/**
+ * @author jiangydev.
+ */
+public class WordCountMain {
+
+    public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
+        // 入口：由 Hadoop 框架 Yarn 平台调用
+        // 创建一个任务
+        Job job = Job.getInstance(new Configuration());
+        job.setJarByClass(WordCountMain.class);
+        // 指定任务的map
+        job.setMapperClass(WordCountMapper.class);
+        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputValueClass(LongWritable.class);
+
+        // 指定任务的reducer
+        job.setReducerClass(WordCountReducer.class);
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(LongWritable.class);
+
+        // 指定任务的输入和输出
+        FileInputFormat.setInputPaths(job, new Path(args[0]));
+        FileOutputFormat.setOutputPath(job, new Path(args[1]));
+
+        // 提交执行任务
+        job.waitForCompletion(true);
+    }
+}
+```
+
+
+
+#### 6.3 Yarn 平台的任务调度和执行过程
+
+![Yarn平台的任务调度和执行过程](/img/in-post/bigdata/base/Yarn平台的任务调度和执行过程.png)
+
+
+
+#### 6.3 MR的高级功能
+
+- 排序
+- 分区 Partition
+- 序列化
+- 合并 Combiner
+
+
+
+#### 6.4 MR的核心 - Shuffle 洗牌
+
+#### 6.5 案例
+
+- 使用MRUnit进行单元测试
+- 数据去重 select distinct
+- 多表查询
+- 自连接
+- 倒排索引 Reverted index
+
+
 
 ### 7 Hive：数据分析引擎
 
