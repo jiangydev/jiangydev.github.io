@@ -5,9 +5,13 @@ subtitle:   ""
 date:       2017-12-23
 author:     "jiangydev"
 header-img: "img/post-bg-shiro.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - Shiro
 ---
+
+[TOC]
 
 ## Understanding Permissions in Apache Shiro
 

@@ -5,11 +5,15 @@ subtitle:   ""
 date:       2017-12-03
 author:     "jiangydev"
 header-img: "img/post-bg-cloud.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - Redis
     - Java
     - Jedis
 ---
+
+[TOC]
 
 ## Jedis Could not get a resource from the pool
 

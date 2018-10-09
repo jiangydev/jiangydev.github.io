@@ -5,9 +5,13 @@ subtitle:   ""
 date:       2017-05-25
 author:     "jiangydev"
 header-img: "img/post-bg-docker.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - Docker
 ---
+
+[TOC]
 
 ## Docker 基本概念和架构
 
@@ -97,7 +101,7 @@ $ apt-get install -y lxc-docker
 ```
 
 简易安装:
-   
+
 ```shell
 $ sudo apt-get install -y curl
 $ curl -sSL https://get.docker.com/ | sudo sh
@@ -168,7 +172,7 @@ $ docker logs [-f] [-t] [--tail] 容器名
     -t --timestamps=true | false 默认false
     --tail ="all"
 ```
-    
+
 (3) 在运行中的容器内启动新进程
 
 ```sh
@@ -232,7 +236,7 @@ $ docker search [OPTIONS] TERM
     -s, --stars=0 Only displays with at least x stars
     // 最多返回25个结果
 ```
- 
+
 (2) 拉取镜像
 
 ```sh
@@ -260,7 +264,7 @@ $ docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
   -m, --message="" Commit message
   -p, --pause=true  Pause container during commit
 ```
-  
+
 (2) 通过Dockerfile构建
 
 ```sh
@@ -271,14 +275,14 @@ $ docker build [OPTIONS] PATH | URL | -
     -q, --quiet=false
     -t, --tag=""
 ```
-    
+
 构建过程：(构建完成后可以使用docker history <image>查看)
-    ①从基础镜像运行一个容器；
-    ②执行一条指令，对容器做出修改；
-    ③再基于刚提交的镜像运行一个新容器；
-    ④执行第②步，否则结束。
-    那么过程就允许中间层镜像的调试。
-    可以使用 --no-cache 不使用缓存，或者在Dockerfile中使用ENV REFRESH_DATE ...
+​    ①从基础镜像运行一个容器；
+​    ②执行一条指令，对容器做出修改；
+​    ③再基于刚提交的镜像运行一个新容器；
+​    ④执行第②步，否则结束。
+​    那么过程就允许中间层镜像的调试。
+​    可以使用 --no-cache 不使用缓存，或者在Dockerfile中使用ENV REFRESH_DATE ...
 
 ### 4. Dockerfile 指令
 
@@ -352,7 +356,7 @@ fd://socketfd
 nc -U /var/run/docker.sock
 "GET /info HTTP/1.1"
 ```
-  
+
 ### 2. 配置和操作
 
 (1) 查看docker进程：
@@ -403,7 +407,7 @@ docker -d [OPTIONS]
       --ipv6=false
       --mtu=0
 ```
-      
+
 (4) 配置文件
 
 ```sh
@@ -536,7 +540,7 @@ Dockerfile 中:
 VOLUME [/data1, /data2]
 
 ### 2. 数据卷容器
-  
+
 解决Dockerfile中无法实现挂载数据卷的问题
 
 ```sh

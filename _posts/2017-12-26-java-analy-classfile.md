@@ -5,9 +5,13 @@ subtitle:   ""
 date:       2017-12-26
 author:     "jiangydev"
 header-img: "img/post-bg-java.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - Java
 ---
+
+[TOC]
 
 # Java Class 文件内容解析
 

@@ -5,9 +5,13 @@ subtitle:   ""
 date:       2017-12-17
 author:     "jiangydev"
 header-img: "img/post-bg-shiro.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - Shiro
 ---
+
+[TOC]
 
 # Get Start with Apache Shiro 3
 
@@ -265,7 +269,7 @@ A: 应用程序通常基于用户情景构建，并且你会希望基于每个�
     System.exit(0);
   }
   ```
-    
+
 #### 总结
 
 希望这个介绍教程帮助您了解如何设置在一个基本的应用, 以及 Shiro 的主要设计概念, Subject 和 SecurityManager。

@@ -5,9 +5,13 @@ subtitle:   ""
 date:       2018-05-13
 author:     "jiangydev"
 header-img: "img/post-bg-ftp.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - FTP
 ---
+
+[TOC]
 
 ## FTP 使用过程中的一些问题
 

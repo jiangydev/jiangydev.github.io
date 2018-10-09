@@ -5,9 +5,13 @@ subtitle:   ""
 date:       2017-02-18
 author:     "jiangydev"
 header-img: "img/post-bg-docker.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - Docker
 ---
+
+[TOC]
 
 # sudo or gosu
 

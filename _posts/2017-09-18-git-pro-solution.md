@@ -5,10 +5,14 @@ subtitle:   "Git 分布式版本控制系统"
 date:       2017-09-18
 author:     "jiangydev"
 header-img: "img/post-bg-git.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - Git
     - Version Control
 ---
+
+[TOC]
 
 ## Git 工具使用解决方案
 

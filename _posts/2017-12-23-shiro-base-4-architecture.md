@@ -5,9 +5,13 @@ subtitle:   ""
 date:       2017-12-23
 author:     "jiangydev"
 header-img: "img/post-bg-shiro.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - Shiro
 ---
+
+[TOC]
 
 # Get Start with Apache Shiro 4
 
@@ -64,9 +68,9 @@ Shiro 在它的设计中反映了这些概念。
   Authenticator (`org.apache.shiro.authc.Authenticator`)
 
     Authenticator 是负责对用户身份认证（登录）尝试的执行和反应的组件。当一个用户尝试登录，Authenticator 执行逻辑。Authenticator 知道如何协调一个或多个存储相关用户/账号信息的域。从那些域中获得的数据被用来验证用户身份。
-
+    
     Authentication Strategy (`org.apache.shiro.authc.pam.AuthenticationStrategy`)
-
+    
       如果配置了超过一个域，AuthenticationStrategy 会协调域来决定在哪种身份认证尝试成功或失败的情况。（例如，如果一个域验证成功了，当其他的失败了，那这次尝试是否成功？必须所有的域都验证成功吗？仅仅一个验证成功就行了？）
 
   Authorizer (org.apache.shiro.authz.Authorizer)
@@ -76,9 +80,9 @@ Shiro 在它的设计中反映了这些概念。
   SessionManager (`org.apache.shiro.session.mgt.SessionManager`)
 
     SessionManager 知道怎样创建和管理用户会话的生命周期，在任何环境为用户提供一个强壮的 (robust) 会话体验。在安全框架的世界，这是一个独特的功能。Shiro 有能力在任何环境管理用户会话，即使没有 Web/Servlet 或 EJB 容器。Shiro 默认使用一个可获得的、已存在的会话机制，但如果没有的话，例如在独立的应用程序或非 Web 环境，它会使用内建的企业会话管理来提供相同的编程体验。存在 SessionDAO 来允许任何数据源被用来保持会话。
-
+    
       SessionDAO (`org.apache.shiro.session.mgt.eis.SessionDAO`)
-
+    
         SessionDAO 代表 SessionManager 执行 Session 的持久化操作 (CRUD). 这允许任何 data store 被插入 Session 管理基础设施。
 
   CacheManager (`org.apache.shiro.cache.CacheManager`)

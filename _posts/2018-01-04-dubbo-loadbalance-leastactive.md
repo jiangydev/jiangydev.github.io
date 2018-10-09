@@ -5,12 +5,16 @@ subtitle:   ""
 date:       2018-01-04
 author:     "jiangydev"
 header-img: "img/post-bg-cloud.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - Load Balance
     - Dubbo
     - Algorithm
     - 源码学习
 ---
+
+[TOC]
 
 ## LeastActiveLoadBalance(最少活跃数)
 

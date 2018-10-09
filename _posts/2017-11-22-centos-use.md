@@ -5,10 +5,14 @@ subtitle:   ""
 date:       2017-11-22
 author:     "jiangydev"
 header-img: "img/post-bg-unix-linux.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - CentOS
     - Linux
 ---
+
+[TOC]
 
 # CentOS 相关配置及使用
 
@@ -59,5 +63,3 @@ DNS1=192.168.XX.XX
    $ yum clean all
    $ yum makecache
    ```
-
-   

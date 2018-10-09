@@ -5,12 +5,16 @@ subtitle:   "区块链技术开发相关笔记"
 date:       2018-08-24
 author:     "jiangydev"
 header-img: "img/post-bg-blockchain.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - BlockChain
     - Ethereum
     - Solidity
     - Contract
 ---
+
+[TOC]
 
 ## 一、区块链介绍
 
@@ -50,7 +54,6 @@ tags:
   $ geth -testnet import filename
   ```
 
-  
 
 ### 3 设置系统环境变量
 
@@ -140,7 +143,6 @@ tags:
   $ miner.start()
   ```
 
-  
 
 
 
@@ -402,15 +404,12 @@ $ admin.nodeInfo
   $ geth --identity "MyPrivateNode" --rpc --rpcport "8086" --rpccorsdomain "*" --datadir "C:\Users\HS\Desktop\test\ethtest" --port "30303" --nodiscover --rpcapi "db,eth,net,web3" --networkid 521 init /path/to/CustomGenesis.json
   ```
 
-  
-
 - 运行私有网络
 
   ```shell
   $ geth --identity "MyPrivateNode" --rpc --rpcport "8086" --rpccorsdomain "*" --datadir "C:\Users\HS\Desktop\test\ethtest" -- port "30303" --nodiscover --rpcapi "db,eth,net,web3" --networkid 520 console
   ```
 
-  
 
 ## 四、智能合约编程入门
 
@@ -440,7 +439,6 @@ $ admin.nodeInfo
   > admin.addPeer("pubkey@ip:port")
   ```
 
-  
 
 #### 2.2 在多节点私有网络中创建使用多重签名钱包
 
@@ -495,8 +493,6 @@ $ admin.nodeInfo
       }
   }
   ```
-
-  
 
 - 部署合约
 
@@ -637,7 +633,6 @@ Division by zero and modulus with zero throws a runtime exception.
   }
   ```
 
-  
 
 #### 4.3 Array
 

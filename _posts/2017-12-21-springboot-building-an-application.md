@@ -5,9 +5,13 @@ subtitle:   ""
 date:       2017-12-17
 author:     "jiangydev"
 header-img: "img/post-bg-shiro.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - Spring Boot
 ---
+
+[TOC]
 
 ## Building an Application with Spring Boot
 
@@ -173,7 +177,7 @@ public class Application {
         <artifactId>spring-boot-starter-jetty</artifactId>  
     </dependency>
     ```
-
+    
     ```java
     /**
      *jetty: Unable to start EmbeddedWebApplicationContext due to missing EmbeddedServletContainerFactory bean.
@@ -353,7 +357,7 @@ Maven:
     $ curl -X POST localhost:8080/shutdown
     {"timestamp":1513937561289,"status":404,"error":"Not Found","message":"No message available","path":"/shutdown"}
     ```
-
+    
     因为没有启用 shutdown, 请求被不存在的所阻止。
 
   关于这些 RESTful 点的详细信息，以及如何使用 application.properties 文件调整它们的设置，可以阅读 [docs about the endpoints](https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#production-ready-endpoints).

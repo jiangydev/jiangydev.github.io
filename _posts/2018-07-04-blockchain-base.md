@@ -5,11 +5,15 @@ subtitle:   "区块链基础理论相关笔记"
 date:       2018-07-04
 author:     "jiangydev"
 header-img: "img/post-bg-blockchain.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - BlockChain
     - Ethereum
     - Bitcoin
 ---
+
+[TOC]
 
 ## 一、知识普及
 
@@ -962,7 +966,6 @@ CPU -> GPU -> FPGA -> ASIC -> MiningPool
     $ bitcoin-cli sendrawtransaction ...
     ```
 
-    
 
 #### 2.2 “偷币”
 
@@ -1149,5 +1152,4 @@ CPU -> GPU -> FPGA -> ASIC -> MiningPool
       > brower_ballot_sol_rating.setRating.sendTransaction(1, 3, {from:addr0})
       ```
 
-      
 

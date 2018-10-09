@@ -5,11 +5,15 @@ subtitle:   ""
 date:       2018-08-16
 author:     "jiangydev"
 header-img: "img/post-bg-java.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - Java
     - Jenkins
     - CI
 ---
+
+[TOC]
 
 # Jenkins 使用问题及解决方案
 

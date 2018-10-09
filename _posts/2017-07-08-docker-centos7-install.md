@@ -5,10 +5,14 @@ subtitle:   "设置镜像加速器"
 date:       2017-07-08
 author:     "jiangydev"
 header-img: "img/post-bg-docker.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - Docker
     - Linux
 ---
+
+[TOC]
 
 ## 在 CentOS7 上安装 Docker
 

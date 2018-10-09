@@ -5,10 +5,14 @@ subtitle:   ""
 date:       2018-01-18
 author:     "jiangydev"
 header-img: "img/post-bg-bigdata.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - Big Data
     - Hadoop
 ---
+
+[TOC]
 
 # 大数据知识体系
 
@@ -69,7 +73,7 @@ tags:
 ###### (1) GFS（Google File System）
 
 --> HDFS(Hadoop Distributed File System)
-    
+​    
 * 数据存储
 
     ![什么是分布式文件系统](/img/in-post/bigdata/base/什么是分布式文件系统.png)
@@ -259,7 +263,6 @@ HBase是一个分布式的、面向列的开源数据库；BigTable是一个结�
   $ source ~/.bash_profile
   ```
 
-  
 
 
 
@@ -462,8 +465,6 @@ HBase是一个分布式的、面向列的开源数据库；BigTable是一个结�
        #export HADOOP_HEAPSIZE=
        #export HADOOP_NAMENODE_INIT_HEAPSIZE=""
        ```
-
-       
 
    - 维护操作日志（edits文件）
 
@@ -820,7 +821,6 @@ hadoop-2.7.5/share/hadoop/hdfs/lib/*.jar
   }
   ```
 
-  
 
 ##### 5.3.3 下载数据
 
@@ -1060,7 +1060,6 @@ Deleted /data/data.txt
   $ hdfs dfs -expunge
   ```
 
-  
 
 #### 5.8 高级功能 - 配额Quota
 

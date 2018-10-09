@@ -5,12 +5,16 @@ subtitle:   ""
 date:       2018-07-29
 author:     "jiangydev"
 header-img: "img/post-bg-java.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - Java
     - Docker
     - Jenkins
     - CI
 ---
+
+[TOC]
 
 # Jenkins CI 方案及案例
 

@@ -5,9 +5,13 @@ subtitle:   ""
 date:       2017-10-09
 author:     "jiangydev"
 header-img: "img/post-bg-java.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - Java
 ---
+
+[TOC]
 
 ## 集合的使用问题
 

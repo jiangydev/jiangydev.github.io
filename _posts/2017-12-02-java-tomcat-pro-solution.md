@@ -5,10 +5,14 @@ subtitle:   ""
 date:       2017-12-02
 author:     "jiangydev"
 header-img: "img/post-bg-java.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - Java
     - Tomcat
 ---
+
+[TOC]
 
 ## Tomcat 防止文件被锁
 

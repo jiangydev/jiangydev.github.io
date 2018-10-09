@@ -5,12 +5,16 @@ subtitle:   ""
 date:       2018-01-04
 author:     "jiangydev"
 header-img: "img/post-bg-cloud.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
     - Load Balance
     - Dubbo
     - Algorithm
     - 源码学习
 ---
+
+[TOC]
 
 ## RounndRobinLoadBalance(轮询)
 
@@ -128,7 +132,6 @@ public class RoundRobinLoadBalance extends AbstractLoadBalance {
    final 变量赋值不可变（引用不可变，对象内容可变），初始化块。
    ```
 
-   
 
 
   2. 一般取模轮询算法
