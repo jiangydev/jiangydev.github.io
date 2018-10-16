@@ -8,7 +8,7 @@ header-img: "img/post-bg-cloud.jpg"
 header-mask: 0.3
 catalog:    true
 tags:
-    - Redis
+    - MySQL
 ---
 
 [TOC]
