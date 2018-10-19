@@ -5,7 +5,7 @@ subtitle:   "Redis 缓存穿透、雪崩，持久化等"
 date:       2018-09-30
 author:     "jiangydev"
 header-img: "img/post-bg-cloud.jpg"
-header-mask: 0.3
+header-mask: 0.5
 catalog:    true
 tags:
     - Redis

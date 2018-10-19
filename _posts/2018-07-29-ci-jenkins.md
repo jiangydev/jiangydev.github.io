@@ -5,7 +5,7 @@ subtitle:   ""
 date:       2018-07-29
 author:     "jiangydev"
 header-img: "img/post-bg-java.jpg"
-header-mask: 0.3
+header-mask: 0.5
 catalog:    true
 tags:
     - Java
@@ -104,7 +104,7 @@ tags:
 
 安装需要一些时间，等待安装完成即可。
 
-![Jenkins插件安装界面](C:/Users/HS/Desktop/docmark/JavaEE/Jenkins/pic/Jenkins%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E7%95%8C%E9%9D%A2.png)
+![Jenkins插件安装界面](/img/in-post/jenkins/Jenkins插件安装界面.png)
 
 > 小提示：
 >

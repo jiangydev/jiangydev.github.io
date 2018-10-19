@@ -5,7 +5,7 @@ subtitle:   "Nginx 日志配置相关"
 date:       2018-06-05
 author:     "jiangydev"
 header-img: "img/post-bg-cloud.jpg"
-header-mask: 0.3
+header-mask: 0.5
 catalog:    true
 tags:
     - Nginx

@@ -5,7 +5,7 @@ subtitle:   ""
 date:       2017-12-17
 author:     "jiangydev"
 header-img: "img/post-bg-shiro.jpg"
-header-mask: 0.3
+header-mask: 0.5
 catalog:    true
 tags:
     - Spring Boot

@@ -5,7 +5,7 @@ subtitle:   ""
 date:       2017-05-25
 author:     "jiangydev"
 header-img: "img/post-bg-docker.jpg"
-header-mask: 0.3
+header-mask: 0.5
 catalog:    true
 tags:
     - Docker
@@ -108,8 +108,10 @@ $ curl -sSL https://get.docker.com/ | sudo sh
 ```
 
 安装Ubuntu维护的版本:
->  $sudo apt-get install docker.io
-   $source /etc/bash_completion.d/docker.io
+```shell
+$ sudo apt-get install docker.io
+$ source /etc/bash_completion.d/docker.io
+```
 
 (3) 非root用户使用Docker
 

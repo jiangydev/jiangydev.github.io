@@ -5,7 +5,7 @@ subtitle:   ""
 date:       2018-01-18
 author:     "jiangydev"
 header-img: "img/post-bg-bigdata.jpg"
-header-mask: 0.3
+header-mask: 0.5
 catalog:    true
 tags:
     - Big Data

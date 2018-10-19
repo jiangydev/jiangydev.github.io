@@ -5,7 +5,7 @@ subtitle:   "MySQL 索引优化, 主从复制, 隔离级别等"
 date:       2018-10-16
 author:     "jiangydev"
 header-img: "img/post-bg-cloud.jpg"
-header-mask: 0.3
+header-mask: 0.5
 catalog:    true
 tags:
     - MySQL

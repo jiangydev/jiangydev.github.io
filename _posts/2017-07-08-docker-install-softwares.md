@@ -5,7 +5,7 @@ subtitle:   "Tomcat, Nginx, MySQL, Oracle, vsFTP"
 date:       2017-07-08
 author:     "jiangydev"
 header-img: "img/post-bg-docker.jpg"
-header-mask: 0.3
+header-mask: 0.5
 catalog:    true
 tags:
     - Docker

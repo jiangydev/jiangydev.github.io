@@ -5,7 +5,7 @@ subtitle:   "常见操作，三种量词（贪婪、懒惰、强占），表达�
 date:       2017-05-01
 author:     "jiangydev"
 header-img: "img/post-bg-java.jpg"
-header-mask: 0.3
+header-mask: 0.5
 catalog:    true
 tags:
     - Java

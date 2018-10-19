@@ -5,7 +5,7 @@ subtitle:   ""
 date:       2018-05-13
 author:     "jiangydev"
 header-img: "img/post-bg-ftp.jpg"
-header-mask: 0.3
+header-mask: 0.5
 catalog:    true
 tags:
     - FTP

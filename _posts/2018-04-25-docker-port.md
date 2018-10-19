@@ -5,7 +5,7 @@ subtitle:   ""
 date:       2018-04-25
 author:     "jiangydev"
 header-img: "img/post-bg-docker.jpg"
-header-mask: 0.3
+header-mask: 0.5
 catalog:    true
 tags:
     - Docker

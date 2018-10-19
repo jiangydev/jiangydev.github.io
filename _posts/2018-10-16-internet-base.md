@@ -5,7 +5,7 @@ subtitle:   "TCP/IP等"
 date:       2018-10-16
 author:     "jiangydev"
 header-img: "img/post-bg-cloud.jpg"
-header-mask: 0.3
+header-mask: 0.5
 catalog:    true
 tags:
     - 计算机网络
