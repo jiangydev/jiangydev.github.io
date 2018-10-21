@@ -41,11 +41,11 @@ tags:
 
   ```sh
   # 简单的
-  $ docker run -d --name jiangydev_jenkins -p 8080:8080 -p 50000:50000 jenkins
+  $ docker run -d --name jiangydev_jenkins -p 8080:8080 -p 50000:50000 jenkinsci/jenkins
   
   # 如果需要挂载本地目录，可以使用下面的语句
   # 要注意目录权限，权限不足可能会导致容器启动失败
-  $ docker run -d --name jiangydev_jenkins -p 8080:8080 -p 50000:50000 -v /opt/jenkins:/var/jenkins_home jenkins
+  $ docker run -d --name jiangydev_jenkins -p 8080:8080 -p 50000:50000 -v /opt/jenkins:/var/jenkins_home jenkinsci/jenkins
   ```
   当返回一串十六进制数，表示创建容器成功。
 
