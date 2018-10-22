@@ -29,7 +29,8 @@ tags:
 ### 2.1 前提
 
 1. Jenkins Docker 官方镜像地址：[https://hub.docker.com/_/jenkins/](https://hub.docker.com/_/jenkins/)
-2. 
+
+
 
 ### 2.2 具体步骤
 
