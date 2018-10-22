@@ -16,7 +16,9 @@ tags:
 
 # 搭建一个技术博客
 
-在朋友圈看见 SpringCloud 中国社区大佬 [方志朋][2] 推送了微文 [如何搭建自己的个人博客][3] ，才想起来自己也应该写一篇文章记录。
+在朋友圈看见 SpringCloud 中国社区大佬 [方志朋][2] 推送了微文 [如何搭建自己的个人博客][3] ，才想起来自己也应该写一篇文章。
+
+另一位大佬站点：[CodeSheep][13]。
 
 金九银十，在9月中旬，我搭建了自己的博客，主要是之前的`学习笔记`和项目执行过程中遇到的 `BUG 解决方案`。
 
@@ -137,7 +139,13 @@ $ jekyll serve --watch
 
 为了免去安装各种基本环境的苦恼，以下采用 Docker 部署，使用 docker-compose 做服务编排。
 
-### 3.1 Docker 及 docker-compose 安装
+### 3.1 域名解析
+
+添加两条 A 记录，'www' 和 '@'，`www`将域名解析到 www.jiangjiangy.xyz，`@` 将域名解析到 jiangjiangy.xyz
+
+![aliyun-dns](/img/in-post/blog/aliyun-dns.png)
+
+### 3.2 Docker 及 docker-compose 安装
 
 Docker 环境安装可参考我的另一篇文章：[在 CentOS7 上安装 Docker][10]
 
@@ -147,13 +155,13 @@ docker-compose 安装
 $ yum install -y docker-compose
 ```
 
-### 3.2 准备工作
+### 3.3 准备工作
 
 文件结构如下
 
 ```
 compose
-├── jekyll         # 博客静态资源网站目录
+├── jekyll         # 博客静态资源网站目录，所有者 1000！(权限用于自动化部署)
 ├── jenkins        # 自动化部署，所有者 1000！
 ├── nginx          # 负载均衡，反向代理等
     ├── conf       # 重要！nginx.conf 配置文件
@@ -248,7 +256,7 @@ services:
       - jenkins:jenkins
 ```
 
-### 3.3 启动服务
+### 3.4 启动服务
 
 服务器端`/opt/compose/`是我们操作的目录，所有操作在该目录下完成！
 
@@ -275,18 +283,18 @@ $ docker-compose up -d
 > 2. 从 GitHub 拉取博客项目可能会因为网络问题中断，拉取不了的话，就本地下载后，使用 scp 等方式上传到服务器的 /opt/compose 目录下。
 > 3. 解决 Jenkins 容器挂载目录权限的问题，主要有两种方法，可参考 Stackoverflow [what-is-the-best-way-to-manage-permissions-for-docker-shared-volumes][11]
 
-### 3.4 配置自动化部署
+### 3.5 配置自动化部署
 
 其实到上面一步已经能正常访问了，但是当博客有新的 push 后，从本地传输文件过于复杂，不如配置自动化部署，如下。
 
-#### 3.4.1 添加 Webhooks
+#### 3.5.1 添加 Webhooks
 
 设置github仓库的webhook，在github仓库的项目界面，点击Setting->Webhooks->Add Webhook，添加Webhooks的配置信息，我的配置信息如下：
 
 - Payload URL: http://jenkins.jiangjiangy.xyz./github-webhook/
 - Content type: application/json
 
-#### 3.4.2 解决从 GitHub 拉取项目失败的问题
+#### 3.5.2 解决从 GitHub 拉取项目失败的问题
 
 修改域名解析文件 /etc/hosts。
 
@@ -302,11 +310,11 @@ $ sudo systemctl restart NetworkManager
 # 若上面的命令无效，尝试这个：sudo rcnscd restart
 ```
 
-#### 3.4.3 配置 Jenkins
+#### 3.5.3 配置 Jenkins
 
 该部分配置可参考我的另一篇博客 [Jenkins + Docker 持续集成方案及案例][12]
 
-#### 3.4.4 重新启动服务
+#### 3.5.4 重新启动服务
 
 ```shell
 # 切换到 compose 操作目录
@@ -332,6 +340,8 @@ $ docker-compose up -d
 [7]: https://cloud.tencent.com/redirect.php?redirect=1025&cps_key=35362d4b60aa7d269b4a2bc0b05f6b27&from=console
 [8]: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
 [9]: https://www.netsarang.com/products/xsh_overview.html
-[10]: http://www.jiangjiangy.xyz./2017/07/08/docker-centos7-install/
+[10]: https://jiangydev.github.io/2017/07/08/docker-centos7-install/
 [11]: http://stackoverflow.com/questions/23544282/what-is-the-best-way-to-manage-permissions-for-docker-shared-volumes
 [12]: https://jiangydev.github.io/2018/07/29/ci-jenkins/
+[13]: https://www.codesheep.cn/
+
