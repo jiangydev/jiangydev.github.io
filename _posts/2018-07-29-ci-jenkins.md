@@ -386,3 +386,5 @@ Tomcat设置好用户名/密码，要提供给 Jenkins 以实现远程部署。
 > Jenkins 能获取到命令执行的结果，若有错误，但不影响部署，则会提示不稳定。
 
 ![Jenkins-file5-查看file部署结果](/img/in-post/jenkins/file/Jenkins-file5-查看file部署结果.png)
+
+## 6 Jenkins + (Git)GitHub + 
