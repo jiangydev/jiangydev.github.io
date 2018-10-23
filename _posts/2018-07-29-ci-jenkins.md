@@ -139,7 +139,7 @@ tags:
 
 - 安装插件
 
-  > （不清楚？请移步[Jenkins CI 方案-通用配置-插件安装]()）
+  > （不清楚？请移步[Jenkins CI 方案-通用配置-插件安装](#3.1 插件安装)）
 
 #### 3.3.3 具体步骤
 
@@ -315,7 +315,7 @@ Tomcat设置好用户名/密码，要提供给 Jenkins 以实现远程部署。
 
 - 安装插件
 
-  > （不清楚？请移步[Jenkins CI 方案-通用配置-插件安装]()）
+  > （不清楚？请移步[Jenkins CI 方案-通用配置-插件安装](3.1 插件安装)）
 
 
 
@@ -325,7 +325,7 @@ Tomcat设置好用户名/密码，要提供给 Jenkins 以实现远程部署。
 
 #### 5.2.3 添加构建所需凭据
 
-> （不清楚？请移步[Jenkins CI 方案-通用配置-添加凭据]()）
+> （不清楚？请移步[Jenkins CI 方案-通用配置-添加凭据](#3.2 凭据添加)）
 
 添加Git仓库身份验证凭据：
 
@@ -367,17 +367,17 @@ Tomcat设置好用户名/密码，要提供给 Jenkins 以实现远程部署。
 
    可以无构建后操作，也可以在这里使用邮件发送构建结果等。
 
-#### 4.2.5 搭建一个免密登录 SSH 服务器
+#### 5.2.5 搭建一个免密登录 SSH 服务器
 
 设置好用户名/密码或密钥，提供给 Jenkins 以实现远程部署。 
 
 > （不清楚？请移步[Linux运维-SSH 免密登录]()）
 
-#### 4.2.6 在Gogs中设置Web钩子
+#### 5.2.6 在Gogs中设置Web钩子
 
 ![Jenkins-Gogs Webhook-war](/img/in-post/jenkins/Jenkins-Gogs%20Webhook-war.png)
 
-#### 4.2.7 检查自动部署是否成功
+#### 5.2.7 检查自动部署是否成功
 
 访问Jenkins，查看构建详细过程及结果。
 
@@ -387,4 +387,151 @@ Tomcat设置好用户名/密码，要提供给 Jenkins 以实现远程部署。
 
 ![Jenkins-file5-查看file部署结果](/img/in-post/jenkins/file/Jenkins-file5-查看file部署结果.png)
 
-## 6 Jenkins + (Git)GitHub + 
+## 6 Jenkins + (Git)GitHub + 静态文件 实现自动化部署
+
+### 6.1 前提及部署思路
+
+#### 6.1.1 前提
+
+- Github 仓库中存在一个项目，这里我以博客 [jiangydev/jiangydev.github.io](https://github.com/jiangydev/jiangydev.github.io) 为例；
+
+#### 6.1.2 思路
+
+- 从 Git 仓库拉取项目文件到 Jenkins 本地。
+
+- `场景一`：需要部署到远程服务器，使用 Public over SSH 将项目文件再发送到目的服务器相应目录中，并发送一些操作指令。
+- `场景二`：在当前服务器上部署，将项目文件复制到相应目录即可。
+
+### 6.2 具体步骤
+
+这里我在本地服务器（Jenkins所在的服务器）部署。
+
+#### 6.2.1 安装必要的插件
+
+- 需要安装的插件列表，若已存在，不用安装。
+
+  | 插件名称      | 插件说明       | 可选性 |
+  | ------------- | -------------- | ------ |
+  | GitHub plugin | 可能已默认安装 | 必选   |
+
+- 安装插件
+
+  > （不清楚？请移步[Jenkins CI 方案-通用配置-插件安装](#3.1 插件安装)）
+
+#### 6.2.2 配置构建环境
+
+不需要构建环境。
+
+#### 6.2.3 添加构建所需凭据
+
+> 1. 不清楚？请移步[Jenkins CI 方案-通用配置-凭据添加](#3.2 凭据添加)
+> 2. `注意，这里需要两步`：添加 GitHub 仓库身份验证（用户名、密码的方式）和 Personal Access Tokens
+
+添加 GitHub 仓库身份验证和 Personal Access Tokens（`用于验证GitHub API`）凭据：
+
+- Personal Access Tokens 的获取方式：Settings -> Developer settings -> Personal access tokens
+
+![Jenkins-GitHub所需凭据配置](/img/in-post/jenkins/blog/Jenkins-GitHub所需凭据配置.png)
+
+
+
+#### 6.2.4 在Jenkins创建一个项目构建
+
+![Jenkins-创建一个blog项目](/img/in-post/jenkins/blog/Jenkins-创建一个blog项目.png)
+
+这里选择`构建一个自由风格的软件项目 `，该选择自定义性强，下面只列出重要的选择项配置。
+
+1. 项目基本信息
+
+   自定义填写
+
+2. 源码管理
+
+   - Respository URL 填写 git clone 的地址
+
+   ![Jenkins-blog-sourceCodeManagement](/img/in-post/jenkins/blog/Jenkins-blog-sourceCodeManagement.png)
+
+3. 设置构建触发器
+
+   - 设置 GitHub hook 触发器
+
+   ![Jenkins-blog-buildTriggers](/img/in-post/jenkins/blog/Jenkins-blog-buildTriggers.png)
+
+4. 构建环境
+
+   构建需要访问 Repo，使用 GitHub Access Tokens。
+
+   ![Jenkins-blog-buildEnvironment](/img/in-post/jenkins/blog/Jenkins-blog-buildEnvironment.png)
+
+5. 构建
+
+   ![Jenkins-blog-build](/img/in-post/jenkins/blog/Jenkins-blog-build.png)
+
+#### 6.2.5 Jenkins 设置 GitHub 服务器
+
+在 Jenkins 中设置 GitHub Server，Jenkins -> configuration
+
+![Jenkins-blog-githubServer](/img/in-post/jenkins/blog/Jenkins-blog-githubServer.png)
+
+#### 6.2.6 在 GitHub 中设置 Webhooks
+
+设置 GitHub 仓库的 Webhook，在 GitHub 仓库的项目界面，点击 Setting -> Webhooks -> Add Webhook，添加 Webhooks 的配置信息，我的配置信息如下：
+
+- Payload URL: http://jenkins.jiangjiangy.xyz./github-webhook/
+- Content type: application/json
+
+![Jenkins-blog-githubWebhooks](/img/in-post/jenkins/blog/Jenkins-blog-githubWebhooks.png)
+
+#### 6.2.7 检查自动部署是否成功
+
+访问 Jenkins，查看构建详细过程及结果。
+
+点击 项目 -> Console Output，查看输出信息。
+
+可能出现的几种情况：
+
+- 拉取 GitHub 项目失败
+
+  ```
+  ERROR: Error fetching remote repo 'origin'
+  hudson.plugins.git.GitException: Failed to fetch from https://github.com/jiangydev/jiangydev.github.io.git
+  ```
+
+  解决方案：
+
+  修改域名解析文件
+
+  解决从 GitHub 拉取项目失败的问题，修改`/etc/hosts`。
+
+  ```shell
+  # 将 github.com 直接解析到 IP
+  $ vi /etc/hosts
+  151.101.229.194   github.global.ssl.fastly.net
+  192.30.255.113    github.com
+  192.30.255.113    www.github.com
+  192.30.253.118    gist.github.com
+  # 刷新 DNS
+  $ sudo systemctl restart NetworkManager
+  # 若上面的命令无效，尝试这个：sudo rcnscd restart
+  ```
+
+- 权限拒绝
+
+  ```
+  rm: cannot remove '/jekyll/404.html': Permission denied
+  rm: cannot remove '/jekyll/CNAME': Permission denied
+  ...
+  ```
+
+  这是由于 Jenkins 容器的使用者为 Jenkins，没有操作挂载目录 /Jekyll 的权限。
+
+  解决方案：
+
+  修改宿主机中挂载目录的权限，如下：
+
+  ```shell
+  # 在宿主机目录下操作
+  $ chown -R 1000 jekyll/
+  ```
+
+

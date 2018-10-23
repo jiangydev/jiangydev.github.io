@@ -58,7 +58,7 @@ $ git clone git@github.com:jiangydev/jiangydev.github.io.git
 | _includes   | 页面需要包含的公共模块，含"About"页面                        |
 | _posts      | 博文，文件格式为 Markdown，文件名格式如"2018-10-17-your-artical-name.md" |
 | _config.yml | 博客的一些属性配置，如博客名，评论模块等                     |
-| CNAME       | 自己的域名                                                   |
+| CNAME       | 自己的域名。填写后，访问 `<github-username>.github.io`会跳转到该域名 |
 
 ### 1.3 创建你的第一篇博文
 
@@ -141,7 +141,7 @@ $ jekyll serve --watch
 
 ### 3.1 域名解析
 
-添加两条 A 记录，'www' 和 '@'，`www`将域名解析到 www.jiangjiangy.xyz，`@` 将域名解析到 jiangjiangy.xyz
+添加两条 A 记录，'www' 和 '@'，`www`将解析域名 [www.jiangjiangy.xyz][14]，`@` 将解析域名 jiangjiangy.xyz
 
 ![aliyun-dns](/img/in-post/blog/aliyun-dns.png)
 
@@ -234,7 +234,7 @@ services:
     environment:
       TZ: Asia/Shanghai
   jenkins:
-    image: "jenkins:2.60.3"
+    image: "jenkinsci/jenkins:2.147"
     volumes:
       - $PWD/jenkins/:/var/jenkins_home/
       - $PWD/jekyll/:/jekyll/
@@ -275,7 +275,7 @@ $ docker-compose up -d
 
 等待服务启动成功后即可访问自己的博客了！
 
-访问地址：[http://www.jiangjiangy.xyz./][http://www.jiangjiangy.xyz./]
+访问地址：[http://www.jiangjiangy.xyz./][14]
 
 > 小提示
 >
@@ -342,6 +342,7 @@ $ docker-compose up -d
 [9]: https://www.netsarang.com/products/xsh_overview.html
 [10]: https://jiangydev.github.io/2017/07/08/docker-centos7-install/
 [11]: http://stackoverflow.com/questions/23544282/what-is-the-best-way-to-manage-permissions-for-docker-shared-volumes
-[12]: https://jiangydev.github.io/2018/07/29/ci-jenkins/
+[12]: https://jiangydev.github.io/2018/07/29/ci-jenkins/#6-Jenkins--gitgithub--静态文件-实现自动化部署
 [13]: https://www.codesheep.cn/
 
+[14]: http://www.jiangjiangy.xyz./
