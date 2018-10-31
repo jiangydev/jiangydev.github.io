@@ -20,33 +20,41 @@ tags:
 
 1. 必须是 64 位操作系统, `内核在 3.8 以上`.
 
-通过以下命令查看您的 CentOS 内核：
+   通过以下命令查看您的 CentOS 内核：
 
-`[root@localhost ~]# uname -r`
+   ```shell
+   $ uname -r
+   ```
 
 2. 升级本地yum包
 
-`[root@localhost ~]# yum update `
+   ```shell
+   $ yum update
+   ```
 
 ### Docker 安装
 
 Docker 软件包已经包括在默认的 CentOS-Extras 软件源里。因此想要安装 docker，只需要运行下面的 yum 命令：
 
-`[root@localhost ~]# yum install docker`
+```shell
+$ yum install docker
+```
 
 ### 启动 Docker 服务
 
 安装完成后，使用下面的命令来启动 docker 服务，并将其设置为开机启动：
 
-`[root@localhost ~]# service docker start`
-
-`[root@localhost ~]# chkconfig docker on`
+```shell
+$ service docker start
+$ chkconfig docker on
+```
 
 （LCTT 译注：此处采用了旧式的 sysv 语法，如采用CentOS 7中支持的新式 systemd 语法，如下：
 
-`[root@localhost ~]# systemctl start docker.service`
-
-`[root@localhost ~]# systemctl enable docker.service`
+```shell
+$ systemctl start docker.service
+$ systemctl enable docker.service
+```
 
 ### 设置镜像加速
 
@@ -74,58 +82,57 @@ RUN echo "Asia/Shanghai" > /etc/timezone && ln -sf /usr/share/zoneinfo/Asia/Shan
 
 1. 删除已有规则
 
-先查看规则的编号，然后删除指定的规则：
+   先查看规则的编号，然后删除指定的规则：
 
-```sh
-$ iptables -L --line-numbers
-$ iptables -D INPUT 3
-# 清除预设表filter中的所有规则链的规则
-$ iptables -F
-# 清除预设表filter中使用者自定链中的规则
-$ iptables -X
-
-# 设定预设规则
-$ iptables -P INPUT DROP
-$ iptables -P OUTPUT ACCEPT
-$ iptables -P FORWARD DROP
-```
-
+   ```shell
+   $ iptables -L --line-numbers
+   $ iptables -D INPUT 3
+   # 清除预设表filter中的所有规则链的规则
+   $ iptables -F
+   # 清除预设表filter中使用者自定链中的规则
+   $ iptables -X
+   
+   # 设定预设规则
+   $ iptables -P INPUT DROP
+   $ iptables -P OUTPUT ACCEPT
+   $ iptables -P FORWARD DROP
+   ```
 
 2. 添加规则
 
-```sh
-#SSH
-iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-#HTTP
-iptables -A INPUT -p tcp --dport 80 -j ACCEPT
-iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
-#HTTPS
-iptables -A INPUT -p tcp --dport 443 -j ACCEPT
-#POP3
-iptables -A INPUT -p tcp --dport 110 -j ACCEPT
-#SMTP
-iptables -A INPUT -p tcp --dport 25 -j ACCEPT
-#FTP
-iptables -A INPUT -p tcp --dport 21 -j ACCEPT
-iptables -A INPUT -p tcp --dport 20 -j ACCEPT
-#DNS
-iptables -A INPUT -p tcp --dport 53 -j ACCEPT
-
-#打开主动模式21端口
-iptables -A INPUT -p tcp --dport 21 -j ACCEPT
-
-# 打开被动模式50000~50020之间的端口
-iptables -A INPUT -p tcp --dport 50000:50020 -j ACCEPT
-iptables -A INPUT -i lo -j ACCEPT
-iptables -A INPUT -m state --state ESTABLISHED -j ACCEPT
-
-# 允许 icmp
-iptables -A OUTPUT -p icmp -j ACCEPT (OUTPUT设置成DROP的话)
-iptables -A INPUT -p icmp -j ACCEPT  (INPUT设置成DROP的话)
-```
+   ```shell
+   #SSH
+   iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+   #HTTP
+   iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+   iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
+   #HTTPS
+   iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+   #POP3
+   iptables -A INPUT -p tcp --dport 110 -j ACCEPT
+   #SMTP
+   iptables -A INPUT -p tcp --dport 25 -j ACCEPT
+   #FTP
+   iptables -A INPUT -p tcp --dport 21 -j ACCEPT
+   iptables -A INPUT -p tcp --dport 20 -j ACCEPT
+   #DNS
+   iptables -A INPUT -p tcp --dport 53 -j ACCEPT
+   
+   #打开主动模式21端口
+   iptables -A INPUT -p tcp --dport 21 -j ACCEPT
+   
+   # 打开被动模式50000~50020之间的端口
+   iptables -A INPUT -p tcp --dport 50000:50020 -j ACCEPT
+   iptables -A INPUT -i lo -j ACCEPT
+   iptables -A INPUT -m state --state ESTABLISHED -j ACCEPT
+   
+   # 允许 icmp
+   iptables -A OUTPUT -p icmp -j ACCEPT (OUTPUT设置成DROP的话)
+   iptables -A INPUT -p icmp -j ACCEPT  (INPUT设置成DROP的话)
+   ```
 
 3. 保存iptables规则
 
-```sh
-$ /usr/sbin/iptables-save
-```
+   ```shell
+   $ /usr/sbin/iptables-save
+   ```
