@@ -231,6 +231,44 @@ $ docker stop <CONTAINER ID|NAME>   发送信号等待停止
 $ docker kill <CONTAINER ID|NAME>   直接停止
 ```
 
+### 3.3 限制容器资源
+
+查看容器的状态：
+
+```shell
+$ docker stats
+```
+
+(1) 内存
+
+测试工具：memload
+
+参数：`--memory 1024m`
+
+(2) CPU(亲和性)
+
+```shell
+# 查看 cpu 属性
+$ lscpu
+# 查看进程使用的 cpu
+$ ps mo pid,comm,psr `pgrep cat`
+# 指定进程使用的 cpu
+$ taskset -c 0 ps
+```
+
+参数
+
+- 使用的cpu数量: `--cpus 0.5`;
+- 使用的cpu: `--cpuset-cpu 0`
+
+
+
+### 3.4 容器监控
+
+监控工具：`cAdvisor 容器`
+
+通过挂载宿主机中的资源文件，读取资源的状态，以达到分析的目的。
+
 
 
 ## 4 Docker 镜像与仓库
@@ -287,6 +325,22 @@ $ docker push NAME[:TAG]
 $ vim /etc/sysconfig/docker
 other_args="--insecure-registry 192.168.199.220:5001"
 $ /etc/init.d/docker restart
+```
+
+(4) 标记镜像
+
+```shell
+$ docker tag NAME[:TAG] custom_name[:TAG]
+```
+
+TAG 本质为`硬链接`，镜像的 ID 都是相同的（类似于文件的硬链接，inode 相同）。 
+
+(5) 修改默认的镜像仓库地址
+
+修改的文件：`/etc/sysconfig/docker`，增加的参数如下：
+
+```shell
+ADD_REGISTRY='--add-registry 192.168.1.1:5000'
 ```
 
 
@@ -779,16 +833,24 @@ $ docker run --rm -it progrium/stress --cpu 2 --io 1 --vm 2 --vm-bytes 128M --ti
 
 目前 Docker Web  页面管理的平台：
 
-- [Rancher](https://github.com/rancher/rancher)
 - [Portainer](https://github.com/portainer/portainer)
+- [Rancher](https://github.com/rancher/rancher)
 - [Docker UI](https://github.com/kevana/ui-for-docker) 项目不再维护
 
 Shipyard 项目已经从 GitHub 中删除，这里不考虑。
 
-### 10.1 Rancher
+### 10.1 Portainer
 
+> 参考文献：
+>
+> [官方文档：Portainer Docs](https://portainer.readthedocs.io/)
 
+一个开源的轻量级的 Docker 管理工具。
 
+### 10.2 Rancher
 
+> 参考文献：
+>
+> [官方文档：Rancher 1.6 Docs](https://rancher.com/docs/rancher/latest/zh/)
 
-### 10.2 Portainer
+官方文档有中文版，只建议不要用配置过低的主机做 rancher server，会无响应。

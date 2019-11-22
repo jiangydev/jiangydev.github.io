@@ -58,6 +58,8 @@ $ systemctl enable docker.service
 
 ### 设置镜像加速
 
+阿里云免费镜像加速器地址：https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors
+
 ```json
 # /etc/docker/daemon.json
 {
