@@ -249,11 +249,11 @@ $ docker-machine ssh default
 
 > 参考文献
 >
-> [https://docs.docker.com/compose/](https://docs.docker.com/compose/)
+> [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
 
-Compose 是一个定义和运行多Docker容器应用的工具。
+Compose 是一个定义和运行多Docker容器应用的工具。可以访问官网查看最新的安装方式。
 
-该部分可以参考我的另一篇博客：[搭建一个技术博客 #3.2 Docker 及 docker-compose 安装][9]
+该部分实战可以参考我的另一篇博客：[搭建一个技术博客 #3.2 Docker 及 docker-compose 安装][9]
 
 案例中构建了 Jekyll + Jenkins + Nginx 的多容器环境。
 

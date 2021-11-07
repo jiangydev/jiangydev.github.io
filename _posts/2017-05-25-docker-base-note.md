@@ -205,7 +205,23 @@ $ boot2docker ssh
     $ nsenter --target <Pid> --mount --uts --ipc --net --pid  -> 进入容器
     ```
 
-### 3.2 守护式容器
+### 3.2 容器的导出和导入
+
+容器导出为镜像命令：
+
+```sh
+$ docker export 容器名 > filename.tar
+```
+
+导入镜像：
+
+```sh
+$ cat filename.tar | docker import - 镜像名
+```
+
+
+
+### 3.3 守护式容器
 
 (1) Ctrl + P   Ctrl + Q   -d
 
@@ -229,6 +245,55 @@ $ docker exec [-d] [-i] [-t] 容器名 [COMMAND] [ARG...]
 ```sh
 $ docker stop <CONTAINER ID|NAME>   发送信号等待停止
 $ docker kill <CONTAINER ID|NAME>   直接停止
+```
+
+### 3.4 限制容器资源
+
+查看容器的状态：
+
+```shell
+$ docker stats 容器名
+```
+
+(1) 内存
+
+测试工具：memload
+
+参数：`--memory 1024m`
+
+(2) CPU(亲和性)
+
+CPU 亲和性（affinity）就是进程要在某个给定的 CPU 上尽量长时间地运行而不被迁移到其他处理器的倾向性。
+
+```shell
+# 查看 cpu 属性
+$ lscpu
+# 查看进程使用的 cpu
+$ ps mo pid,comm,psr `pgrep cat`
+# 指定进程使用的 cpu
+$ taskset -c 0 ps
+```
+
+参数
+
+- 使用的cpu数量: `--cpus 0.5`;
+- 使用的cpu: `--cpuset-cpu 0`
+
+
+
+### 3.5 容器监控工具(cAdvisor)
+
+监控工具：`cAdvisor 容器`
+
+通过挂载宿主机中的资源文件(如 /sys 等)，读取资源的状态，以达到分析的目的。
+
+```shell
+$ docker pull google/cadvisor
+$ docker run \
+-v /var/run:/var/run \
+-v /sys:/sys:ro \
+-v /var/lib/docker:/var/lib/docker:ro \
+-d -p 8080:8080 google/cadvisor
 ```
 
 
@@ -289,9 +354,41 @@ other_args="--insecure-registry 192.168.199.220:5001"
 $ /etc/init.d/docker restart
 ```
 
+(4) 标记镜像
+
+```shell
+$ docker tag NAME[:TAG] custom_name[:TAG]
+```
+
+TAG 本质为`硬链接`，镜像的 ID 都是相同的（类似于文件的硬链接，inode 相同）。 
+
+(5) 修改默认的镜像仓库地址
+
+修改的文件：`/etc/sysconfig/docker`，增加的参数如下：
+
+```shell
+ADD_REGISTRY='--add-registry 192.168.1.1:5000'
+```
+
+### 4.3 镜像备份和导入
+
+镜像备份命令：
+
+```sh
+$ docker save 镜像名 > filename.tar
+```
+
+备份镜像导入：
+
+```sh
+$ docker load -i filename.tar
+# 或者
+$ docker load < filename.tar
+```
 
 
-### 4.3 构建镜像
+
+### 4.4 构建镜像
 
 #### 1 构建方式
 
@@ -328,7 +425,7 @@ $ docker build [OPTIONS] PATH | URL | -
 那么过程就允许中间层镜像的调试。
 可以使用 `--no-cache` 不使用缓存，或者在Dockerfile中使用`ENV REFRESH_DATE`
 
-### 4.4 Dockerfile 指令
+### 4.5 Dockerfile 指令
 
 编写 dockerfile 文件，如下：
 
@@ -779,16 +876,24 @@ $ docker run --rm -it progrium/stress --cpu 2 --io 1 --vm 2 --vm-bytes 128M --ti
 
 目前 Docker Web  页面管理的平台：
 
-- [Rancher](https://github.com/rancher/rancher)
 - [Portainer](https://github.com/portainer/portainer)
+- [Rancher](https://github.com/rancher/rancher)
 - [Docker UI](https://github.com/kevana/ui-for-docker) 项目不再维护
 
 Shipyard 项目已经从 GitHub 中删除，这里不考虑。
 
-### 10.1 Rancher
+### 10.1 Portainer
 
+> 参考文献：
+>
+> [官方文档：Portainer Docs](https://portainer.readthedocs.io/)
 
+一个开源的轻量级的 Docker 管理工具。
 
+### 10.2 Rancher
 
+> 参考文献：
+>
+> [官方文档：Rancher 1.6 Docs](https://rancher.com/docs/rancher/latest/zh/)
 
-### 10.2 Portainer
+官方文档有中文版，只建议不要用配置过低的主机做 rancher server，会无响应。
