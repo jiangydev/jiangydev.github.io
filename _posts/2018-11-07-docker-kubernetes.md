@@ -136,7 +136,7 @@ tags:
 - 关联
   - 多个相同 Label 的 Pod
 
-![k8s-service](C:\Users\HS\Desktop\jiangydev.github.io\img\in-post\docker\k8s\k8s-service.png)
+![k8s-service](/img/in-post/docker/k8s/k8s-service.png)
 
 #### 1.1.8 Replication Controller
 
@@ -196,21 +196,21 @@ Volumes（存储卷）是 Pod 中能够被多个容器访问的共享目录。Ku
 
 ### 1.2 Kubernetes 架构及原理
 
-![k8s-architecture](C:\Users\HS\Desktop\jiangydev.github.io\img\in-post\docker\k8s\k8s-architecture.png)
+![k8s-architecture](/img/in-post/docker/k8s/k8s-architecture.png)
 
 
 
 ### 1.3 Kubernetes 网络机制
 
-![k8s-networks](C:\Users\HS\Desktop\jiangydev.github.io\img\in-post\docker\k8s\k8s-networks.png)
+![k8s-networks](/img/in-post/docker/k8s/k8s-networks.png)
 
 #### 1.3.1 Service Portal 方式访问 Service
 
-![k8s-networks-serviceportal](C:\Users\HS\Desktop\jiangydev.github.io\img\in-post\docker\k8s\k8s-networks-serviceportal.png)
+![k8s-networks-serviceportal](/img/in-post/docker/k8s/k8s-networks-serviceportal.png)
 
 #### 1.3.2 外部应用通过 NodePort 访问 Service
 
-![k8s-networks-nodeport](C:\Users\HS\Desktop\jiangydev.github.io\img\in-post\docker\k8s\k8s-networks-nodeport.png)
+![k8s-networks-nodeport](/img/in-post/docker/k8s/k8s-networks-nodeport.png)
 
 
 
